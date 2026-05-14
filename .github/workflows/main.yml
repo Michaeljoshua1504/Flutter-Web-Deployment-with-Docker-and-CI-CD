@@ -1,4 +1,4 @@
-name: Node.js Docker CI Pipeline
+name: Flutter Web Docker CI Pipeline
 
 on:
   push:
@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker Image
-        run: docker build -t nodeapp .
+        run: docker build -t flutter-web-app .
