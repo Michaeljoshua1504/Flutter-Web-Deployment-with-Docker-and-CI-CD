@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -6,6 +7,17 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  // GitHub repository URL
+  final String repoUrl =
+      'https://github.com/Michaeljoshua1504/Flutter-Web-Deployment-with-Docker-and-CI-CD';
+
+  Future<void> _openRepo() async {
+    final uri = Uri.parse(repoUrl);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $repoUrl');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +69,15 @@ class MyApp extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16),
                   ),
+                  const SizedBox(height: 24),
+
+                  // GitHub Repository Button
+                  ElevatedButton.icon(
+                    onPressed: _openRepo,
+                    icon: const Icon(Icons.code),
+                    label: const Text('View Project on GitHub'),
+                  ),
+
                   const SizedBox(height: 24),
                   const Text(
                     'Created by Padamuthum Michael Joshua',
